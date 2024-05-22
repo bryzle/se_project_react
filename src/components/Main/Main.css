@@ -1,0 +1,15 @@
+.cards {
+  margin-top: 40px;
+}
+
+.cards__text {
+  font-family: CabinetGrotesk-Bold, Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.cards__list {
+  display: flex;
+  gap: 20px;
+  padding: 0;
+}
