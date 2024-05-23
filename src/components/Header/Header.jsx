@@ -2,17 +2,21 @@ import headerLogo from "../../assets/Logo.svg";
 import "./Header.css";
 import avatar from "../../assets/profile image.svg";
 
-const DateComponent = () => {
-  const currentDate = new Date();
-  const options = {
-    month: "long",
-    day: "numeric",
+function Header({ handleAddClick, weatherData }) {
+  const DateComponent = () => {
+    const currentDate = new Date();
+    const options = {
+      month: "long",
+      day: "numeric",
+    };
+    const formattedDate = currentDate.toLocaleDateString("en-US", options);
+    return (
+      <h2 className="date">
+        {formattedDate}, {weatherData.city}
+      </h2>
+    );
   };
-  const formattedDate = currentDate.toLocaleDateString("en-US", options);
-  return <h2 className="date">{formattedDate}, New York</h2>;
-};
 
-function Header({ handleAddClick }) {
   return (
     <header>
       <nav className="header">
