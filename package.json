@@ -2,7 +2,7 @@
   "name": "se_project_react",
   "private": true,
   "version": "0.0.0",
-  "hompage": "https://bryzle.github.io/se_project_react",
+  "homepage": "https://bryzle.github.io/se_project_react",
   "type": "module",
   "scripts": {
     "dev": "vite --open",
