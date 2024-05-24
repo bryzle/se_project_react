@@ -30,10 +30,6 @@
   position: relative;
   padding: 28px 28px 36px 28px;
 }
-.modal__radio-buttons {
-  display: flex;
-  flex-direction: column;
-}
 
 .modal__title {
   font-family: CabinetGrotesk-Bold, Arial, Helvetica, sans-serif;
@@ -90,7 +86,16 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
+.modal__radio-input {
+  margin-right: 8px;
+}
+
+.modal__radio-container {
+  margin-bottom: 8px;
+}
+
 .modal__radio-buttons {
+  display: grid;
   height: 108px;
   width: 173px;
   border-style: none;
@@ -105,7 +110,6 @@
 
 .modal__input_type_radio {
   border: none;
-  margin-bottom: 8px;
   color: rgba(0, 0, 0, 0.5);
 }
 
