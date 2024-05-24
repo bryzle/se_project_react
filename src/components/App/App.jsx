@@ -18,7 +18,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const handleAddClick = () => setActiveModal("add-isOpen");
+  const handleAddClick = () => setActiveModal("isOpen");
   const closeActiveModal = () => setActiveModal("");
   const handleCardClick = (card) => {
     setActiveModal("preview");
@@ -46,7 +46,7 @@ function App() {
           activeModal={activeModal}
         >
           <label className="modal__label" htmlFor="name">
-            Name:
+            Name
           </label>
           <input
             className="modal__input"
@@ -56,7 +56,7 @@ function App() {
             placeholder="Name"
           />
           <label className="modal__label" htmlFor="link">
-            Type:
+            Image
           </label>
           <input
             className="modal__image"
