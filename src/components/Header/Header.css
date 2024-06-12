@@ -18,6 +18,7 @@
   height: 25px;
   font-family: CabinetGrotesk-Bold, Arial, Helvetica, sans-serif;
   line-height: 24px;
+  margin-left: 742px;
 }
 
 .header__username {
@@ -36,7 +37,7 @@
   max-height: 24px;
   line-height: 24px;
   font-size: 20px;
-  margin: 8px 20px 8px 742px;
+  margin: 8px 20px 8px 20px;
   padding: 0;
   font-family: CabinetGrotesk-Bold, Arial, Helvetica, sans-serif;
 }
@@ -57,4 +58,5 @@
   height: 40px;
   border: 1px;
   margin-right: 40px;
+  color: rgba(0, 0, 0, 0.5);
 }
