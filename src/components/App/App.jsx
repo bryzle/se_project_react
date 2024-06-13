@@ -10,6 +10,8 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, APIkey } from "../../utils/constants.js";
 import CurrentTemperatureUnitContext from "../Context/Context.jsx";
 import { Routes, Route } from "react-router-dom";
+import {getItems,addItems,deleteItems} from "../../utils/api.js"
+
 
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -29,21 +31,38 @@ function App() {
     setSelectedCard(card);
   };
   const [clothingItems, setClothingItems] = useState([]);
+  
   const onAddItem = (item) => {
-    setClothingItems((prevItems) => [item, ...prevItems]);
-    console.log(clothingItems);
+    addItems(item)
+      .then((newItem) => {
+        setClothingItems((prevItems) => {
+          console.log('Previous items:', prevItems); // Debugging line
+          return [newItem, ...prevItems];
+        });
+      })
+      .catch(console.error);
   };
+
   const deleteCard = (id) => {
-    console.log(clothingItems);
-    console.log(id);
-    setClothingItems((prevItems) => prevItems.filter((item) => item.id !== id));
-    console.log(clothingItems);
-  };
+    deleteItems(id)
+    .then(() =>{setClothingItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  }).catch((err)=>{console.error(err)})
+  }
+
+
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((res) => {
         setWeatherData(filterWeatherData(res));
+      })
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    getItems()
+      .then((items) => {
+        setClothingItems(items);
       })
       .catch(console.error);
   }, []);
@@ -80,18 +99,20 @@ function App() {
                 <Profile
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
                 />
               }
             />
-            {/* <Route
+            <Route
               path="se_project_react"
               element={
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
                 />
               }
-            /> */}
+            />
           </Routes>
           <AddItemModal
             closeActiveModal={closeActiveModal}
@@ -110,4 +131,5 @@ function App() {
     </div>
   );
 }
+
 export default App;

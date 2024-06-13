@@ -1,9 +1,8 @@
-import { defaultClothingItems } from "../../utils/constants.js";
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 import React from "react";
 
-function ClothesSection({ weatherData,handleCardClick }) {
+function ClothesSection({ weatherData,handleCardClick,clothingItems }) {
   return (
     <div className="clothesSection__page">
       <div className="clothesSection__nav">
@@ -13,7 +12,7 @@ function ClothesSection({ weatherData,handleCardClick }) {
         </button>
       </div>
       <ul className="clothesSection__list">
-        {defaultClothingItems
+        {clothingItems
           .filter((item) => {
             return item.weather === weatherData.type;
           })
@@ -30,5 +29,6 @@ function ClothesSection({ weatherData,handleCardClick }) {
     </div>
   );
 }
+
 
 export default ClothesSection;
