@@ -10,8 +10,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, APIkey } from "../../utils/constants.js";
 import CurrentTemperatureUnitContext from "../Context/Context.jsx";
 import { Routes, Route } from "react-router-dom";
-import {getItems,addItems,deleteItems} from "../../utils/api.js"
-
+import { getItems, addItems, deleteItems } from "../../utils/api.js";
 
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -31,12 +30,14 @@ function App() {
     setSelectedCard(card);
   };
   const [clothingItems, setClothingItems] = useState([]);
-  
   const onAddItem = (item) => {
     addItems(item)
+      .then((cards) => {
+        setSelectedCard(cards.filter((card) => card.id !== cardId));
+      })
       .then((newItem) => {
         setClothingItems((prevItems) => {
-          console.log('Previous items:', prevItems); // Debugging line
+          console.log("Previous items:", prevItems); // Debugging line
           return [newItem, ...prevItems];
         });
       })
@@ -45,11 +46,18 @@ function App() {
 
   const deleteCard = (id) => {
     deleteItems(id)
-    .then(() =>{setClothingItems((prevItems) => prevItems.filter((item) => item.id !== id));
-  }).catch((err)=>{console.error(err)})
-  }
-
-
+      .then(() => {
+        setSelectedCard(cards.filter((card) => card.id !== cardId));
+      })
+      .then(() => {
+        setClothingItems((prevItems) =>
+          prevItems.filter((item) => item.id !== id)
+        );
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -61,8 +69,8 @@ function App() {
 
   useEffect(() => {
     getItems()
-      .then((items) => {
-        setClothingItems(items);
+      .then((data) => {
+        console.log(data);
       })
       .catch(console.error);
   }, []);
@@ -97,16 +105,6 @@ function App() {
               path="/profile"
               element={
                 <Profile
-                  weatherData={weatherData}
-                  handleCardClick={handleCardClick}
-                  clothingItems={clothingItems}
-                />
-              }
-            />
-            <Route
-              path="se_project_react"
-              element={
-                <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
                   clothingItems={clothingItems}
