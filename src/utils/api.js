@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:3001/se_project_react";
+const baseUrl = "http://localhost:3001";
 const headers = { "Content-Type": "application/json" };
 function _checkResponse(res) {
   if (res.ok) {
@@ -8,9 +8,7 @@ function _checkResponse(res) {
 }
 
 function getItems() {
-  return fetch(`http://localhost:3001/se_project_react/items`).then(
-    _checkResponse
-  );
+  return fetch(`${baseUrl}/items`).then(_checkResponse);
 }
 
 function addItems(name, imageUrl, weather) {

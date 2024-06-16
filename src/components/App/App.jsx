@@ -70,7 +70,7 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        console.log(data);
+        setClothingItems(data);
       })
       .catch(console.error);
   }, []);
@@ -95,6 +95,7 @@ function App() {
                 <Main
                   weatherData={weatherData}
                   handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
                 />
               }
             />
