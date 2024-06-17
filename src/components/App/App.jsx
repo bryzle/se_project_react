@@ -8,7 +8,7 @@ import ItemModal from "../ItemModal/ItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, APIkey } from "../../utils/constants.js";
-import CurrentTemperatureUnitContext from "../Context/Context.jsx";
+import CurrentTemperatureUnitContext from "../../utils/Context.jsx";
 import { Routes, Route } from "react-router-dom";
 import { getItems, addItems, deleteItems } from "../../utils/api.js";
 
