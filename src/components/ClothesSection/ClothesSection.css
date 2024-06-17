@@ -24,6 +24,7 @@
   width: 1015px;
   height: 676px;
   padding: 0;
+  display: flex;
 }
 
 .clothesSection__add-new-btn {

@@ -11,13 +11,13 @@ function getItems() {
   return fetch(`${baseUrl}/items`).then(_checkResponse);
 }
 
-function addItems(name, link, weather) {
+function addItems(name, imageUrl, weather) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: headers,
     body: JSON.stringify({
       name,
-      link,
+      imageUrl,
       weather,
     }),
   }).then(_checkResponse);

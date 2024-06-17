@@ -2,12 +2,12 @@ import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 import React from "react";
 
-function ClothesSection({ weatherData,handleCardClick,clothingItems }) {
+function ClothesSection({ weatherData,handleCardClick,clothingItems,handleAddClick }) {
   return (
     <div className="clothesSection__page">
       <div className="clothesSection__nav">
         <p className="clothesSection__title">Your Items</p>
-        <button className="clothesSection__add-new-btn" type="button">
+        <button className="clothesSection__add-new-btn" type="button" onClick={handleAddClick}>
           + Add new
         </button>
       </div>
