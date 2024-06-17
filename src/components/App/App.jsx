@@ -45,13 +45,9 @@ function App() {
   const deleteCard = (id) => {
     deleteItems(id)
       .then(() => {
-        setClothingItems(clothingItems.filter((card) => card._id !== card._id));
+        setClothingItems(clothingItems.filter((card) => id !== card._id));
       })
-      .then(() => {
-        setClothingItems((prevItems) =>
-          prevItems.filter((item) => item.id !== id)
-        );
-      })
+
       .catch((err) => {
         console.error(err);
       });
