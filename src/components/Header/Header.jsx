@@ -36,8 +36,9 @@ function Header({ handleAddClick, weatherData }) {
           >
             +Add Clothes
           </button>
+
+          <p className="header__username">Terrence Tegegne</p>
           <NavLink to="/profile">
-            <p className="header__username">Terrence Tegegne</p>
             <img
               src={avatar}
               alt="App Profile Image"

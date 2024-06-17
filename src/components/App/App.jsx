@@ -31,23 +31,21 @@ function App() {
   };
   const [clothingItems, setClothingItems] = useState([]);
   const onAddItem = (item) => {
-    addItems(item)
-      .then((cards) => {
-        setSelectedCard(cards.filter((card) => card.id !== cardId));
-      })
+    console.log(item);
+    addItems(item.name, item.link, item.weather)
       .then((newItem) => {
         setClothingItems((prevItems) => {
-          console.log("Previous items:", prevItems); // Debugging line
           return [newItem, ...prevItems];
         });
       })
+
       .catch(console.error);
   };
 
   const deleteCard = (id) => {
     deleteItems(id)
       .then(() => {
-        setSelectedCard(cards.filter((card) => card.id !== cardId));
+        setClothingItems(clothingItems.filter((card) => card._id !== card._id));
       })
       .then(() => {
         setClothingItems((prevItems) =>
@@ -71,9 +69,6 @@ function App() {
     getItems()
       .then((data) => {
         setClothingItems(data);
-        setSelectedCard(data);
-  
-       
       })
       .catch(console.error);
   }, []);

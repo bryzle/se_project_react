@@ -7,8 +7,7 @@ function Main({ weatherData, handleCardClick, clothingItems }) {
   const { currentTemperatureUnit } = React.useContext(
     CurrentTemperatureUnitContext
   );
-  console.log("Weather Data:", weatherData);
-  console.log("Clothing Items:", clothingItems);
+
   return (
     <main>
       <WeatherCard weatherData={weatherData} />

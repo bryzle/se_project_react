@@ -7,17 +7,14 @@ const AddItemModal = ({ isOpen, onAddItem, closeActiveModal }) => {
   const [name, setName] = React.useState("");
   const handleNameChange = (e) => {
     setName(e.target.value);
-    console.log(e.target.value);
   };
   const [link, setLink] = React.useState("");
   const handleLinkChange = (e) => {
     setLink(e.target.value);
-    console.log(e.target.value);
   };
-  const [weatherType, setWeatherType] = React.useState("");
+  const [weather, setWeatherType] = React.useState("");
   const handleWeatherTypeChange = (e) => {
     setWeatherType(e.target.value);
-    console.log(e.target.value);
   };
   // declare state for each input field
 
@@ -28,7 +25,8 @@ const AddItemModal = ({ isOpen, onAddItem, closeActiveModal }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    onAddItem({ name, link, weatherType });
+    onAddItem({ name, link, weather });
+    closeActiveModal();
   }
 
   return (
