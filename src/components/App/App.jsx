@@ -71,6 +71,9 @@ function App() {
     getItems()
       .then((data) => {
         setClothingItems(data);
+        setSelectedCard(data);
+  
+       
       })
       .catch(console.error);
   }, []);

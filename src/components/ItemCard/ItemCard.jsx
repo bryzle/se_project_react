@@ -1,9 +1,10 @@
 import "./ItemCard.css";
 
-function ItemCard({ item, onCardClick,deleteCard }) {
+function ItemCard({ item, onCardClick }) {
   const handleCardClick = () => {
     onCardClick(item);
   };
+
   return (
     <div className="card">
       <img
