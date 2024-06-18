@@ -38,21 +38,45 @@
     },
     {
       "name": "Test",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sneakers.png?etag=3efeec41c1c78b8afe26859ca7fa7b6f",
-      "weather": "Hot",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+      "weather": "",
       "_id": 7
     },
     {
       "name": "Test",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Sneakers.png?etag=3efeec41c1c78b8afe26859ca7fa7b6f",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+      "weather": "",
+      "_id": 8
+    },
+    {
+      "name": "Test1",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+      "weather": "",
+      "_id": 9
+    },
+    {
+      "name": "afdsfasd",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
       "weather": "warm",
       "_id": 10
     },
     {
-      "name": "Test",
-      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09",
+      "name": "afdsfasd",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
       "weather": "",
       "_id": 11
+    },
+    {
+      "name": "afdsfasd",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+      "weather": "",
+      "_id": 12
+    },
+    {
+      "name": "afdsfasd",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+      "weather": "warm",
+      "_id": 14
     }
   ]
 }

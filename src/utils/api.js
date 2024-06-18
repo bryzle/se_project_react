@@ -29,4 +29,4 @@ function deleteItems(id) {
     .then(() => console.log("Card has been deleted"));
 }
 
-export { getItems, addItems, deleteItems };
+export { getItems, addItems, deleteItems, _checkResponse };

@@ -24,7 +24,11 @@
   width: 1015px;
   height: 676px;
   padding: 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: 328px 328px 328px;
+  grid-column: 3;
+  grid-row: 2;
+  gap: 20px 20px;
 }
 
 .clothesSection__add-new-btn {

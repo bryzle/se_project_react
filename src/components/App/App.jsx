@@ -8,7 +8,7 @@ import ItemModal from "../ItemModal/ItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, APIkey } from "../../utils/constants.js";
-import CurrentTemperatureUnitContext from "../../utils/Context.jsx";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import { Routes, Route } from "react-router-dom";
 import { getItems, addItems, deleteItems } from "../../utils/api.js";
 
@@ -23,6 +23,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+
   const handleAddClick = () => setActiveModal("add-garment");
   const closeActiveModal = () => setActiveModal("");
   const handleCardClick = (card) => {
@@ -37,6 +38,7 @@ function App() {
         setClothingItems((prevItems) => {
           return [newItem, ...prevItems];
         });
+        closeActiveModal();
       })
 
       .catch(console.error);
@@ -46,6 +48,7 @@ function App() {
     deleteItems(id)
       .then(() => {
         setClothingItems(clothingItems.filter((card) => id !== card._id));
+        closeActiveModal();
       })
 
       .catch((err) => {
@@ -68,6 +71,22 @@ function App() {
       })
       .catch(console.error);
   }, []);
+
+  useEffect(() => {
+    if (!activeModal) return;
+
+    const handleEscClose = (e) => {
+      if (e.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+
+    return () => {
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]);
 
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
