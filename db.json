@@ -77,6 +77,30 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
       "weather": "warm",
       "_id": 14
+    },
+    {
+      "name": "afdsfasd",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+      "weather": "Hot",
+      "_id": 15
+    },
+    {
+      "name": "afdsfasd",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+      "weather": "warm",
+      "_id": 16
+    },
+    {
+      "name": "afdsfasd",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+      "weather": "Cold",
+      "_id": 17
+    },
+    {
+      "name": "afdsfasd",
+      "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/vanoise.jpg",
+      "weather": "warm",
+      "_id": 18
     }
   ]
 }
