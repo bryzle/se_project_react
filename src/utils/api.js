@@ -23,6 +23,7 @@ function addItems(name, imageUrl, weather) {
   }).then(_checkResponse);
 }
 
+
 function deleteItems(id) {
   return fetch(`${baseUrl}/items/${id}`, { method: "DELETE", headers: headers })
     .then(_checkResponse)
