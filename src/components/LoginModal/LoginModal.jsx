@@ -1,14 +1,14 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../Hooks/useForm.js";
 
-const LoginModal = ({ isOpen, closeActiveModal }) => {
+const LoginModal = ({ isOpen, closeActiveModal,handleRegisterModal,onSignIn }) => {
   const { values, handleChange } = useForm({ email: "", password: "" });
 
   const { email, password } = values;
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("Form submitted");
+    onSignIn(values);
   }
 
   return (
@@ -18,6 +18,8 @@ const LoginModal = ({ isOpen, closeActiveModal }) => {
       buttonText="Log in"
       isOpen={isOpen}
       onSubmit={handleSubmit}
+      spanText={"or Sign Up"}
+      orModal={handleRegisterModal}
     >
       <label className="modal__label" htmlFor="login-email">
         Email
@@ -43,7 +45,7 @@ const LoginModal = ({ isOpen, closeActiveModal }) => {
         placeholder="Password"
         value={password}
         onChange={handleChange}
-        autoComplete = "current-password"
+        autoComplete="current-password"
       />
     </ModalWithForm>
   );

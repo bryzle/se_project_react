@@ -21,7 +21,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { getItems, addItems, deleteItems } from "../../utils/api.js";
-import { signIn, signUp, checkToken } from "../../utils/auth.js";
+import { signIn, signUp } from "../../utils/auth.js";
 
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -36,7 +36,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleAddClick = () => setActiveModal("add-garment");
   const handleLogInClick = () => setActiveModal("add-login");
@@ -47,7 +47,7 @@ function App() {
     setSelectedCard(card);
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
       checkToken(token)
@@ -57,16 +57,16 @@ function App() {
         })
         .catch((err) => console.error("Token check failed", err));
     }
-  }, []);
+  }, []); */
 
-  const onRegister = ({ email, password, name, avatar }) => {
-    console.log();
-    signUp(email, password, name, avatar)
+  const onRegister = ({ name, avatar, email, password }) => {
+    signUp(name, avatar, email, password)
       .then(() => {
+        closeActiveModal();
         onSignIn({ email, password });
       })
       .catch((err) => {
-        console.error("Token check failed", err);
+        console.error(console.error("Registration failed", err));
       });
   };
 
@@ -166,7 +166,7 @@ function App() {
             />
             <Routes>
               <Route
-                path="/"
+                path="*"
                 element={
                   <Main
                     weatherData={weatherData}
@@ -200,10 +200,14 @@ function App() {
             <LoginModal
               closeActiveModal={closeActiveModal}
               isOpen={activeModal == "add-login"}
+              handleRegisterModal={handleSignUpClick}
+              onSignIn={onSignIn}
             />
             <RegisterModal
               closeActiveModal={closeActiveModal}
               isOpen={activeModal == "add-register"}
+              onRegister={onRegister}
+              handleLoginModal={handleLogInClick}
             />
             <ItemModal
               closeActiveModal={closeActiveModal}

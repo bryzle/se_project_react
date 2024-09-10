@@ -7,7 +7,9 @@ function ModalWithForm({
   title,
   isOpen,
   closeActiveModal,
+  orModal,
   onSubmit,
+  spanText
 }) {
   return (
     <div className={`modal ${isOpen ? "modal_open" : ""}`}>
@@ -21,6 +23,9 @@ function ModalWithForm({
         {children}
         <button className="modal__submit-button" type="submit">
           {buttonText}
+        </button>
+        <button className="modal__span-button" onClick={orModal}>
+          {spanText}
         </button>
       </form>
     </div>

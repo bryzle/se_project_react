@@ -1,15 +1,15 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../Hooks/useForm.js";
 
-const RegisterModal = ({ isOpen, closeActiveModal }) => {
+const RegisterModal = ({ isOpen, closeActiveModal, onRegister,handleLoginModal }) => {
   const { values, handleChange } = useForm({
-    email: "",
-    password: "",
     name: "",
     avatar: "",
+    email: "",
+    password: "",
   });
 
-  const { email, password, name, avatar } = values;
+  const { name, avatar, email, password } = values;
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -19,17 +19,20 @@ const RegisterModal = ({ isOpen, closeActiveModal }) => {
   return (
     <ModalWithForm
       closeActiveModal={closeActiveModal}
+      name="signup"
       title="Sign Up"
-      buttonText="Next"
+      buttonText="Sign Up"
       isOpen={isOpen}
+      spanText="or Log In"
       onSubmit={handleSubmit}
+      orModal={handleLoginModal}
     >
       <label className="modal__label" htmlFor="register-email">
         Email*
       </label>
       <input
         className="modal__input"
-        type="text"
+        type="email"
         name="email"
         id="register-email"
         placeholder="Email"
@@ -71,7 +74,7 @@ const RegisterModal = ({ isOpen, closeActiveModal }) => {
       <input
         className="modal__input"
         type="url"
-        name="Avatar"
+        name="avatar"
         id="register-avatar"
         placeholder="Avatar URL"
         value={avatar}

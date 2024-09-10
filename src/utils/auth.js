@@ -15,23 +15,27 @@ function _getHeaders(token) {
   };
 }
 
-export const signUp = (email, password, name, avatar) => {
-  return fetchWithAuth(`${baseUrl}/signup`, {
+export const signUp = (name, avatar, email, password) => {
+  return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: headers,
-    body: JSON.stringify({ email, password, name, avatar }),
+    body: JSON.stringify({ name, avatar, email, password }),
   }).then(_checkResponse);
 };
 
 export const signIn = (email, password) => {
-  return fetchWithAuth(`${baseUrl}/signin`, {
-    method: "POST",
-    headers: headers,
-    body: JSON.stringify({ email, password }),
-  }).then(_checkResponse);
+  return (
+    fetch(`${baseUrl}/signin`,
+    {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify({ email, password }),
+    } )
+      .then(_checkResponse)
+  );
 };
 
-export const checkToken = (token) => {
+/* export const checkToken = (token) => {
   return fetchWithAuth(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
@@ -40,10 +44,10 @@ export const checkToken = (token) => {
     },
   }).then(_checkResponse);
 };
-
-export const fetchWithAuth = (url, options = {}, token) => {
+ */
+/* export const fetchWithAuth = (url, options = {}, token) => {
   return fetch(url, {
     ...options,
     headers: _getHeaders(token),
   }).then(_checkResponse);
-};
+}; */
