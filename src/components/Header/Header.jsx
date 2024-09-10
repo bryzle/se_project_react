@@ -34,7 +34,7 @@ function Header({
   };
 
   const profileLogin = (isLoggedIn) => {
-    if (isLoggedIn) {
+    if (isLoggedIn & currentUser) {
       return (
         <>
           <button

@@ -21,7 +21,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import { getItems, addItems, deleteItems } from "../../utils/api.js";
-import { signIn, signUp } from "../../utils/auth.js";
+import { signIn, signUp, checkToken } from "../../utils/auth.js";
 
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -47,17 +47,17 @@ function App() {
     setSelectedCard(card);
   };
 
-  /* useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem("jwt");
     if (token) {
       checkToken(token)
         .then((res) => {
-          setCurrentUser(res); // Assuming the response contains the user data
+          setCurrentUser(res.user); // Assuming the response contains the user data
           setIsLoggedIn(true);
         })
         .catch((err) => console.error("Token check failed", err));
     }
-  }, []); */
+  }, []);
 
   const onRegister = ({ name, avatar, email, password }) => {
     signUp(name, avatar, email, password)

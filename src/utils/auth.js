@@ -35,7 +35,7 @@ export const signIn = (email, password) => {
   );
 };
 
-/* export const checkToken = (token) => {
+ export const checkToken = (token) => {
   return fetchWithAuth(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
@@ -44,10 +44,10 @@ export const signIn = (email, password) => {
     },
   }).then(_checkResponse);
 };
- */
-/* export const fetchWithAuth = (url, options = {}, token) => {
+ 
+ export const fetchWithAuth = (url, options = {}, token) => {
   return fetch(url, {
     ...options,
     headers: _getHeaders(token),
   }).then(_checkResponse);
-}; */
+}; 
