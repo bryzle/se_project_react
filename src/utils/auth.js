@@ -24,30 +24,27 @@ export const signUp = (name, avatar, email, password) => {
 };
 
 export const signIn = (email, password) => {
-  return (
-    fetch(`${baseUrl}/signin`,
-    {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify({ email, password }),
-    } )
-      .then(_checkResponse)
-  );
+  return fetch(`${baseUrl}/signin`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify({ email, password }),
+  }).then(_checkResponse);
 };
 
- export const checkToken = (token) => {
-  return fetchWithAuth(`${baseUrl}/users/me`, {
+export const checkToken = () => {
+  const token = localStorage.getItem("jwt");
+  return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
-      ...headers,
-      Authorization: `Bearer ${token}`, // Include token in Authorization header
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     },
   }).then(_checkResponse);
 };
- 
- export const fetchWithAuth = (url, options = {}, token) => {
+
+/*  export const fetchWithAuth = (url, options = {}, token) => {
   return fetch(url, {
     ...options,
     headers: _getHeaders(token),
   }).then(_checkResponse);
-}; 
+};  */

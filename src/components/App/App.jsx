@@ -73,10 +73,17 @@ function App() {
   const onSignIn = ({ email, password }) => {
     signIn(email, password)
       .then((res) => {
-        localStorage.setItem("jwt", res.token); // Save the JWT token in localStorage
-        setCurrentUser(res.user); // Update current user state, assuming `res.user` contains the user data
-        setIsLoggedIn(true); // Update logged-in state
-        setActiveModal(""); // Close the modal
+        console.log(res);
+        if (res.token) {
+          localStorage.setItem("jwt", res.token); // Save the JWT token in localStorage
+          setIsLoggedIn(true); // Update logged-in state
+          setActiveModal(""); // Close the modal
+          checkToken().then((userResponse) => {
+            setCurrentUser(userResponse);
+          });
+        } else {
+          throw new Error("Token not received");
+        }
       })
       .catch((err) => console.error("Login failed", err));
   };
