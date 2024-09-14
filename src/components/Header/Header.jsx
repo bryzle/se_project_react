@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import headerLogo from "../../assets/Logo.svg";
 import "./Header.css";
 import avatar from "../../assets/profile image.svg";
-import { NavLink } from "react-router-dom";
+import { NavLink,Navigate } from "react-router-dom";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
@@ -34,13 +34,13 @@ function Header({
   };
 
   const profileLogin = (isLoggedIn) => {
-    if (isLoggedIn & currentUser) {
+    if (isLoggedIn && currentUser) {
       return (
         <>
           <button
             className="header__add-clothes-btn"
             type="button"
-            onClick={handleSignUpClick}
+            onClick={handleAddClick}
           >
             +Add Clothes
           </button>

@@ -52,7 +52,7 @@ function App() {
     if (token) {
       checkToken(token)
         .then((res) => {
-          setCurrentUser(res.user); // Assuming the response contains the user data
+          setCurrentUser(res); // Assuming the response contains the user data
           setIsLoggedIn(true);
         })
         .catch((err) => console.error("Token check failed", err));
@@ -101,6 +101,7 @@ function App() {
         setClothingItems((prevItems) => {
           return [newItem, ...prevItems];
         });
+        check
         closeActiveModal();
       })
 
@@ -113,7 +114,6 @@ function App() {
         setClothingItems(clothingItems.filter((card) => id !== card._id));
         closeActiveModal();
       })
-
       .catch((err) => {
         console.error(err);
       });
@@ -173,13 +173,15 @@ function App() {
             />
             <Routes>
               <Route
-                path="*"
+                path="/main"
                 element={
-                  <Main
-                    weatherData={weatherData}
-                    handleCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                  />
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <Main
+                      weatherData={weatherData}
+                      handleCardClick={handleCardClick}
+                      clothingItems={clothingItems}
+                    />
+                  </ProtectedRoute>
                 }
               />
 
@@ -196,6 +198,17 @@ function App() {
                       handleAddClick={handleAddClick}
                     />
                   </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="*"
+                element={
+                  isLoggedIn ? (
+                    <Navigate to="/main" replace />
+                  ) : (
+                    <Navigate to="/profile" replace />
+                  )
                 }
               />
             </Routes>

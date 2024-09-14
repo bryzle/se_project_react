@@ -12,9 +12,11 @@ function getItems() {
 }
 
 function addItems(name, imageUrl, weather) {
+  const token = localStorage.getItem("jwt");
+  console.log(token);
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: headers,
+    headers: { "Authorization": `Bearer ${token}`, ...headers },
     body: JSON.stringify({
       name,
       imageUrl,
@@ -22,7 +24,6 @@ function addItems(name, imageUrl, weather) {
     }),
   }).then(_checkResponse);
 }
-
 
 function deleteItems(id) {
   return fetch(`${baseUrl}/items/${id}`, { method: "DELETE", headers: headers })
