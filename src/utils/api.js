@@ -13,15 +13,18 @@ function getItems() {
 
 function addItems(name, imageUrl, weather) {
   const token = localStorage.getItem("jwt");
-  console.log(token);
+  console.log("Token:", token);
+  const payload = {
+    name,
+    imageUrl,
+    weather,
+  };
+  console.log("Payload:", payload);
+
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: { "Authorization": `Bearer ${token}`, ...headers },
-    body: JSON.stringify({
-      name,
-      imageUrl,
-      weather,
-    }),
+    headers: { Authorization: `Bearer ${token}`, ...headers },
+    body: JSON.stringify(payload),
   }).then(_checkResponse);
 }
 
