@@ -96,12 +96,11 @@ function App() {
 
   const onAddItem = (item) => {
     console.log(item);
-    addItems(item.name, item.link, item.weather)
+    addItems(item.name, item.link, item.weather.toLowerCase())
       .then((newItem) => {
         setClothingItems((prevItems) => {
           return [newItem, ...prevItems];
-        });
-        check
+        });;
         closeActiveModal();
       })
 
@@ -196,6 +195,7 @@ function App() {
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
+                      onSignOut = {onSignOut}
                     />
                   </ProtectedRoute>
                 }

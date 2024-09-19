@@ -9,24 +9,6 @@ const AddItemModal = ({ isOpen, onAddItem, closeActiveModal }) => {
 
   const { name, link, weather } = values;
 
-  /* const [name, setName] = React.useState("");
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-  const [link, setLink] = React.useState("");
-  const handleLinkChange = (e) => {
-    setLink(e.target.value);
-  };
-  const [weather, setWeatherType] = React.useState("");
-  const handleWeatherTypeChange = (e) => {
-    setWeatherType(e.target.value); */
-  /* }; */
-  // declare state for each input field
-
-  // use a useEffect hook to reset the input field state to empty strings when
-  // the modal is opened
-
-  // create onChange handlers corresponding to each state variable
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -77,7 +59,7 @@ const AddItemModal = ({ isOpen, onAddItem, closeActiveModal }) => {
             onChange={handleChange}
           />
           <label
-            htmlFor="Hot"
+            htmlFor="hot"
             className="modal__input modal__input_type_radio modal__input_type_radio-hot"
           >
             Hot
@@ -111,7 +93,7 @@ const AddItemModal = ({ isOpen, onAddItem, closeActiveModal }) => {
           />
 
           <label
-            htmlFor="Cold"
+            htmlFor="cold"
             className="modal__input modal__input_type_radio"
           >
             Cold

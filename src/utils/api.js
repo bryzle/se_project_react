@@ -29,7 +29,12 @@ function addItems(name, imageUrl, weather) {
 }
 
 function deleteItems(id) {
-  return fetch(`${baseUrl}/items/${id}`, { method: "DELETE", headers: headers })
+  const token = localStorage.getItem("jwt");
+  console.log("Token:", token);
+  return fetch(`${baseUrl}/items/${id}`, {
+    method: "DELETE",
+    headers: { Authorization: `Bearer ${token}`, ...headers },
+  })
     .then(_checkResponse)
     .then(() => console.log("Card has been deleted"));
 }
