@@ -1,6 +1,5 @@
 import "./ModalWithForm.css";
 
-
 function ModalWithForm({
   children,
   buttonText,
@@ -9,7 +8,7 @@ function ModalWithForm({
   closeActiveModal,
   orModal,
   onSubmit,
-  spanText
+  spanText,
 }) {
   return (
     <div className={`modal ${isOpen ? "modal_open" : ""}`}>
@@ -21,12 +20,20 @@ function ModalWithForm({
           className="modal__close"
         ></button>
         {children}
-        <button className="modal__submit-button" type="submit">
-          {buttonText}
-        </button>
-        <button className="modal__span-button" onClick={orModal}>
-          {spanText}
-        </button>
+        <div className="modal__login-wrapper">
+          <button className="modal__submit-button" type="submit">
+            {buttonText}
+          </button>
+          <button
+            className="modal__span-button"
+            onClick={(e) => {
+              e.stopPropagation();
+              orModal;
+            }}
+          >
+            {spanText}
+          </button>
+        </div>
       </form>
     </div>
   );

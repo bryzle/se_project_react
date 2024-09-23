@@ -11,9 +11,9 @@ function ProtectedRoute({ children, anonymouse = false, isLoggedIn }) {
 
   if (!anonymouse && !isLoggedIn) {
     return <Navigate to="/" state={{ from: location }} />;
+  } else {
+    return children;
   }
-
-  return children;
 }
 
 export default ProtectedRoute;

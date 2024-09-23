@@ -1,19 +1,9 @@
 import React from "react";
 import "./ToggleSwitch.css";
-import { useEffect, useState } from "react";
-import {CurrentTemperatureUnitContext} from "../../contexts/CurrentTemperatureUnitContext.jsx";
+
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.jsx";
 
 const ToggleSwitch = () => {
-  /*  const [currentTemperateUnit, toggleCurrentTemperateUnit] = useState("C");
-  const handleChange = () => {
-    if (currentTemperateUnit === "C") {
-      toggleCurrentTemperateUnit("F");
-    }
-    if (currentTemperateUnit === "F") {
-      toggleCurrentTemperateUnit("C");
-    }
-    console.log(currentTemperateUnit);
-  }; */
   const { handleToggleSwitchChange, currentTemperatureUnit } = React.useContext(
     CurrentTemperatureUnitContext
   );

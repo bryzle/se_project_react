@@ -21,8 +21,8 @@
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  width: 440px;
-  height: 372px;
+  width: 100%;
+  max-width: 496px;
   border-color: rgba(0, 0, 0, 0.3);
   border-radius: 19px;
   border-width: 1px;
@@ -118,8 +118,7 @@
 }
 
 .modal__submit-button {
-  margin-top: 24px;
-  width: 124px;
+  width: 73px;
   height: 36px;
   gap: 8px;
   border-radius: 4px;
@@ -131,15 +130,24 @@
   text-align: center;
 }
 
-.modal__form .modal__span-button {
-  margin: 0 20px;
+.modal__login-wrapper {
+  display: flex;
+  width: 158px;
+  height: 36px;
+}
+
+.modal__span-button {
+  margin: 8px 0px 8px 12px;
+  width: 73px;
+  height: 20px;
   font-family: "CabinetGrotesk", Arial, sans-serif;
   font-weight: 700;
-  font-size: 20px;
-  line-height: 1.2;
+  font-size: 16px;
+  line-height: 20px;
   border: none;
   cursor: pointer;
   padding: 0;
+  white-space: nowrap;
   background: transparent;
   color: rgba(0, 0, 0, 0.5);
 }

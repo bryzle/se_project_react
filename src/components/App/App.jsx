@@ -73,12 +73,11 @@ function App() {
   const onSignIn = ({ email, password }) => {
     signIn(email, password)
       .then((res) => {
-        console.log(res);
         if (res.token) {
           localStorage.setItem("jwt", res.token); // Save the JWT token in localStorage
           setIsLoggedIn(true); // Update logged-in state
           setActiveModal(""); // Close the modal
-          checkToken().then((userResponse) => {
+          checkToken(res.token).then((userResponse) => {
             setCurrentUser(userResponse);
           });
         } else {
@@ -100,7 +99,7 @@ function App() {
       .then((newItem) => {
         setClothingItems((prevItems) => {
           return [newItem, ...prevItems];
-        });;
+        });
         closeActiveModal();
       })
 
@@ -172,6 +171,17 @@ function App() {
             />
             <Routes>
               <Route
+                path="/"
+                element={
+                  <Main
+                    weatherData={weatherData}
+                    handleCardClick={handleCardClick}
+                    clothingItems={clothingItems}
+                  />
+                }
+              />
+
+              <Route
                 path="/main"
                 element={
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
@@ -195,13 +205,13 @@ function App() {
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
-                      onSignOut = {onSignOut}
+                      onSignOut={onSignOut}
                     />
                   </ProtectedRoute>
                 }
               />
 
-              <Route
+              {/* <Route
                 path="*"
                 element={
                   isLoggedIn ? (
@@ -210,7 +220,7 @@ function App() {
                     <Navigate to="/profile" replace />
                   )
                 }
-              />
+              /> */}
             </Routes>
             <AddItemModal
               closeActiveModal={closeActiveModal}
@@ -220,7 +230,7 @@ function App() {
             <LoginModal
               closeActiveModal={closeActiveModal}
               isOpen={activeModal == "add-login"}
-              handleRegisterModal={handleSignUpClick}
+              handleSignUpClick={handleSignUpClick}
               onSignIn={onSignIn}
             />
             <RegisterModal
