@@ -15,13 +15,14 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import { Routes, Route } from "react-router-dom";
-import { getItems, addItems, deleteItems,addCardLike,removeCardLike } from "../../utils/api.js";
 import {
-  signIn,
-  signUp,
-  checkToken,
-  editProfile
-} from "../../utils/auth.js";
+  getItems,
+  addItems,
+  deleteItems,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api.js";
+import { signIn, signUp, checkToken, editProfile } from "../../utils/auth.js";
 
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -36,6 +37,7 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
+  const [isLiked, setIsLiked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleAddClick = () => setActiveModal("add-garment");
@@ -62,20 +64,22 @@ function App() {
     // Check if this card is not currently liked
     !isLiked
       ? // if so, send a request to add the user's id to the card's likes array
-        
-          // the first argument is the card's id
-          addCardLike(id, token)
+
+        // the first argument is the card's id
+        addCardLike(id, token)
           .then((updatedCard) => {
+            setIsLiked(true);
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
           })
           .catch((err) => console.log(err))
       : // if not, send a request to remove the user's id from the card's likes array
-        
-          // the first argument is the card's id
-          removeCardLike(id, token)
+
+        // the first argument is the card's id
+        removeCardLike(id, token)
           .then((updatedCard) => {
+            setIsLiked(false);
             setClothingItems((cards) =>
               cards.map((item) => (item._id === id ? updatedCard : item))
             );
@@ -225,6 +229,7 @@ function App() {
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     onCardLike={handleCardLike}
+                    isLiked={isLiked}
                   />
                 }
               />
