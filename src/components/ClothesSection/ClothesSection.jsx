@@ -12,6 +12,7 @@ function ClothesSection({
   const { currentUser } = useContext(CurrentUserContext);
   
   
+  
 
   return (
     <div className="clothesSection__page">

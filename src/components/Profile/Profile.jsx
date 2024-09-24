@@ -8,10 +8,11 @@ function Profile({
   clothingItems,
   handleAddClick,
   onSignOut,
+  handleEditClick
 }) {
   return (
     <div className="profile__page">
-      <SideBar weatherData={weatherData} onSignOut={onSignOut} />
+      <SideBar weatherData={weatherData} onSignOut={onSignOut} handleEditClick={handleEditClick} />
 
       <ClothesSection
         weatherData={weatherData}

@@ -8,20 +8,20 @@ import ItemModal from "../ItemModal/ItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
+import EditModal from "../EditModal/EditModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, APIkey } from "../../utils/constants.js";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.jsx";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
+import { Routes, Route } from "react-router-dom";
+import { getItems, addItems, deleteItems,addCardLike,removeCardLike } from "../../utils/api.js";
 import {
-  Routes,
-  Route,
-  Navigate,
-  useNavigate,
-  useLocation,
-} from "react-router-dom";
-import { getItems, addItems, deleteItems } from "../../utils/api.js";
-import { signIn, signUp, checkToken } from "../../utils/auth.js";
+  signIn,
+  signUp,
+  checkToken,
+  editProfile
+} from "../../utils/auth.js";
 
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -39,12 +39,48 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleAddClick = () => setActiveModal("add-garment");
-  const handleLogInClick = () => setActiveModal("add-login");
+  const handleLogInClick = () => {
+    console.log("switching to login modal");
+    setActiveModal("add-login");
+  };
   const closeActiveModal = () => setActiveModal("");
-  const handleSignUpClick = () => setActiveModal("add-register");
+  const handleSignUpClick = () => {
+    console.log("switching to register modal");
+    setActiveModal("add-register");
+  };
+  const handleEditClick = () => {
+    console.log("switching to register modal");
+    setActiveModal("edit");
+  };
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectedCard(card);
+  };
+
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    // Check if this card is not currently liked
+    !isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+        
+          // the first argument is the card's id
+          addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+        
+          // the first argument is the card's id
+          removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -67,6 +103,17 @@ function App() {
       })
       .catch((err) => {
         console.error(console.error("Registration failed", err));
+      });
+  };
+
+  const onEdit = ({ name, avatar }) => {
+    editProfile(name, avatar)
+      .then((res) => {
+        setCurrentUser(res);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error("Edit failed", err);
       });
   };
 
@@ -177,6 +224,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
                   />
                 }
               />
@@ -206,6 +254,7 @@ function App() {
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
                       onSignOut={onSignOut}
+                      handleEditClick={handleEditClick}
                     />
                   </ProtectedRoute>
                 }
@@ -227,10 +276,15 @@ function App() {
               isOpen={activeModal === "add-garment"}
               onAddItem={onAddItem}
             />
+            <EditModal
+              closeActiveModal={closeActiveModal}
+              isOpen={activeModal === "edit"}
+              onEdit={onEdit}
+            />
             <LoginModal
               closeActiveModal={closeActiveModal}
               isOpen={activeModal == "add-login"}
-              handleSignUpClick={handleSignUpClick}
+              handleRegisterModal={handleSignUpClick}
               onSignIn={onSignIn}
             />
             <RegisterModal

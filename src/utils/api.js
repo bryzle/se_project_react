@@ -7,6 +7,13 @@ function _checkResponse(res) {
   return Promise.reject(`Error: ${res.status}`);
 }
 
+function _getHeaders(token) {
+  return {
+    ...headers,
+    ...(token && { Authorization: `Bearer ${token}` }), // Add the Authorization header if token is provided
+  };
+}
+
 function getItems() {
   return fetch(`${baseUrl}/items`).then(_checkResponse);
 }
@@ -39,4 +46,25 @@ function deleteItems(id) {
     .then(() => console.log("Card has been deleted"));
 }
 
-export { getItems, addItems, deleteItems, _checkResponse };
+function addCardLike(id, token) {
+  return fetch(`${baseUrl}/cards/${id}/likes`, {
+    method: "PUT",
+    headers: _getHeaders(token),
+  }).then(_checkResponse);
+}
+
+function removeCardLike(id, token) {
+  return fetch(`${baseUrl}/cards/${id}/likes`, {
+    method: "DELETE",
+    headers: _getHeaders(token),
+  }).then(_checkResponse);
+}
+
+export {
+  getItems,
+  addItems,
+  deleteItems,
+  _checkResponse,
+  addCardLike,
+  removeCardLike,
+};

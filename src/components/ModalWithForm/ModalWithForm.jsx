@@ -27,8 +27,10 @@ function ModalWithForm({
           <button
             className="modal__span-button"
             onClick={(e) => {
+              e.preventDefault();
               e.stopPropagation();
-              orModal;
+              console.log("Switching Modals");
+              orModal();
             }}
           >
             {spanText}

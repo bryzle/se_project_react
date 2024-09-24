@@ -1,7 +1,7 @@
 .card {
   display: flex;
   flex-direction: column;
-
+  position: relative;
   width: 328px;
   height: 325px;
 }
@@ -29,4 +29,12 @@
   line-height: 20px;
   padding: 2px 12px;
   color: rgba(0, 0, 0, 0.6);
+}
+
+.card__like-btn {
+  width: 18px;
+  height: 15px;
+  position: absolute;
+  left: 204px;
+  top: 25px;
 }
