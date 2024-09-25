@@ -47,14 +47,14 @@ function deleteItems(id) {
 }
 
 function addCardLike(id, token) {
-  return fetch(`${baseUrl}/cards/${id}/likes`, {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
     headers: _getHeaders(token),
   }).then(_checkResponse);
 }
 
 function removeCardLike(id, token) {
-  return fetch(`${baseUrl}/cards/${id}/likes`, {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
     headers: _getHeaders(token),
   }).then(_checkResponse);

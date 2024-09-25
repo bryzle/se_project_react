@@ -1,14 +1,19 @@
 import "./ItemCard.css";
 import likeButton from "../../assets/like-button.svg";
 import dislikeButton from "../../assets/like-button-State=Liked.svg";
-
-function ItemCard({ item, onCardClick, onCardLike, isLiked }) {
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import React, { useContext } from "react";
+function ItemCard({ item, onCardClick, onCardLike }) {
   const handleCardClick = () => {
     onCardClick(item);
   };
+  const {currentUser} = useContext(CurrentUserContext);
+  const isLiked = item.likes && item.likes.includes(currentUser._id);
 
   const handleLike = () => {
-    onCardLike(item);
+    console.log(isLiked)
+ 
+    onCardLike(item,isLiked);
   };
   return (
     <div className="card">
