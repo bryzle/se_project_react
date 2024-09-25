@@ -76,3 +76,7 @@
 .modal__wrapper {
   display: flex;
 }
+
+.item__delete-button_hidden {
+  visibility: hidden;
+}

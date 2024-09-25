@@ -11,8 +11,6 @@ function ItemCard({ item, onCardClick, onCardLike }) {
   const isLiked = item.likes && item.likes.includes(currentUser._id);
 
   const handleLike = () => {
-
-
     onCardLike(item, isLiked);
   };
   return (
@@ -23,13 +21,15 @@ function ItemCard({ item, onCardClick, onCardLike }) {
         src={item.imageUrl}
         alt={item.name}
       />
-      <h2 className="item__name">{item.name}</h2>
-      <img
-        src={isLiked ? likeButton : dislikeButton}
-        alt="like button"
-        onClick={handleLike}
-        className="card__like-btn"
-      />
+      <div className="card__wrapper">
+        <h2 className="item__name">{item.name}</h2>
+        <img
+          src={isLiked ? likeButton : dislikeButton}
+          alt="like button"
+          onClick={handleLike}
+          className="card__like-btn"
+        />
+      </div>
     </div>
   );
 }

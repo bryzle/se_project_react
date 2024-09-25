@@ -1,9 +1,9 @@
 .card {
   display: flex;
-  flex-direction: column;
-  position: relative;
   width: 328px;
   height: 325px;
+
+  justify-content: center;
 }
 
 .card__image {
@@ -16,25 +16,32 @@
 }
 
 .item__name {
+  background-color: #ffffff;
   border-radius: 4px;
   max-width: 91px;
   max-height: 24px;
-  margin-left: 125px;
-  margin-top: 17px;
-  margin-bottom: 0;
-  background-color: #ffffff;
-  position: absolute;
+  margin: 0;
   font-family: CabinetGrotesk-Bold, Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 20px;
-  padding: 2px 12px;
+  padding: 0;
   color: rgba(0, 0, 0, 0.6);
+  margin: 4px 10px 5px 0;
+  padding: 2px 12px;
 }
 
 .card__like-btn {
   width: 18px;
   height: 15px;
+}
+
+.card__wrapper {
+  display: flex;
   position: absolute;
-  left: 204px;
-  top: 25px;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  height: 50px;
+  width: fit-content;
 }
