@@ -18,7 +18,7 @@ const EditModal = ({ isOpen, closeActiveModal, onEdit,  }) => {
     <ModalWithForm
       closeActiveModal={closeActiveModal}
       name="edit"
-      title="Edit Item"
+      title="Change Profile Data"
       buttonText="Edit Item"
       isOpen={isOpen}
       onSubmit={handleSubmit}

@@ -41,7 +41,7 @@ function ItemModal({ activeModal, closeActiveModal, card, deleteCard }) {
           <div className="modal__wrapper">
             <h2 className="modal__caption">{card.name}</h2>
             <button
-              onClick={handleDeleteClose}
+              onClick={deleteCard}
               className={itemDeleteButtonClassName}
               type="button"
             >

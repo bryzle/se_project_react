@@ -7,13 +7,6 @@ function _checkResponse(res) {
   return Promise.reject(`Error: ${res.status}`);
 }
 
-function _getHeaders(token) {
-  return {
-    ...headers,
-    ...(token && { Authorization: `Bearer ${token}` }), // Add the Authorization header if token is provided
-  };
-}
-
 function getItems() {
   return fetch(`${baseUrl}/items`).then(_checkResponse);
 }
@@ -37,6 +30,7 @@ function addItems(name, imageUrl, weather) {
 
 function deleteItems(id) {
   const token = localStorage.getItem("jwt");
+  console.log("ID:", id);
   console.log("Token:", token);
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
@@ -49,14 +43,20 @@ function deleteItems(id) {
 function addCardLike(id, token) {
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "PUT",
-    headers: _getHeaders(token),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   }).then(_checkResponse);
 }
 
 function removeCardLike(id, token) {
   return fetch(`${baseUrl}/items/${id}/likes`, {
     method: "DELETE",
-    headers: _getHeaders(token),
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   }).then(_checkResponse);
 }
 

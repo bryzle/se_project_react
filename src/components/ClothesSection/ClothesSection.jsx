@@ -1,18 +1,16 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard.jsx";
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function ClothesSection({
-  weatherData,
   handleCardClick,
   clothingItems,
   handleAddClick,
+  onCardLike,
+  
 }) {
   const { currentUser } = useContext(CurrentUserContext);
-  
-  
-  
 
   return (
     <div className="clothesSection__page">
@@ -38,6 +36,8 @@ function ClothesSection({
                 onCardClick={handleCardClick}
                 key={item._id}
                 item={item}
+                onCardLike={onCardLike}
+               
               />
             );
           })}

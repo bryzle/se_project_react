@@ -9,6 +9,7 @@ import Profile from "../Profile/Profile.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import EditModal from "../EditModal/EditModal.jsx";
+import ConfirmModal from "../ConfirmModal/ConfirmModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { coordinates, APIkey } from "../../utils/constants.js";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.jsx";
@@ -55,16 +56,21 @@ function App() {
     setActiveModal("edit");
   };
   const handleCardClick = (card) => {
+    console.log(card);
     setActiveModal("preview");
     setSelectedCard(card);
   };
 
-  const handleCardLike = ({ _id, isLiked }) => {
-    console.log("ID",_id)
+  const handleConfirmClick = (card) => {
+    setActiveModal("confirm");
+  };
+
+  const handleCardLike = ({ _id }, isLiked) => {
+    console.log("ID:", _id);
+    console.log("isLiked:", isLiked);
     const token = localStorage.getItem("jwt");
     !isLiked
-      ? 
-        addCardLike(_id, token)
+      ? addCardLike(_id, token)
           .then((updatedCard) => {
             console.log("Card has been liked");
             setClothingItems((cards) =>
@@ -72,8 +78,7 @@ function App() {
             );
           })
           .catch((err) => console.log(err))
-      : 
-        removeCardLike(card._id, token)
+      : removeCardLike(_id, token)
           .then((updatedCard) => {
             console.log("Card has been disliked");
             setClothingItems((cards) =>
@@ -154,8 +159,10 @@ function App() {
   };
 
   const deleteCard = (id) => {
+    console.log("deleting card", id);
     deleteItems(id)
       .then(() => {
+        console.log("card is deleted");
         setClothingItems(clothingItems.filter((card) => id !== card._id));
         closeActiveModal();
       })
@@ -225,6 +232,7 @@ function App() {
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     onCardLike={handleCardLike}
+                    deleteCard={deleteCard}
                   />
                 }
               />
@@ -237,12 +245,11 @@ function App() {
                       weatherData={weatherData}
                       handleCardClick={handleCardClick}
                       clothingItems={clothingItems}
+                      deleteCard={deleteCard}
                     />
                   </ProtectedRoute>
                 }
               />
-
-              {/* <Main weatherData={weatherData} handleCardClick={handleCardClick} /> */}
 
               <Route
                 path="/profile"
@@ -255,27 +262,25 @@ function App() {
                       handleAddClick={handleAddClick}
                       onSignOut={onSignOut}
                       handleEditClick={handleEditClick}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }
               />
-
-              {/* <Route
-                path="*"
-                element={
-                  isLoggedIn ? (
-                    <Navigate to="/main" replace />
-                  ) : (
-                    <Navigate to="/profile" replace />
-                  )
-                }
-              /> */}
             </Routes>
             <AddItemModal
               closeActiveModal={closeActiveModal}
               isOpen={activeModal === "add-garment"}
               onAddItem={onAddItem}
             />
+            <ConfirmModal
+              closeActiveModal={closeActiveModal}
+              isOpen={activeModal === "confirm"}
+              onConfirm={handleConfirmClick}
+              card={selectedCard}
+              deleteCard={deleteCard}
+            />
+
             <EditModal
               closeActiveModal={closeActiveModal}
               isOpen={activeModal === "edit"}
@@ -297,7 +302,7 @@ function App() {
               closeActiveModal={closeActiveModal}
               activeModal={activeModal}
               card={selectedCard}
-              deleteCard={deleteCard}
+              deleteCard={handleConfirmClick}
             />
             <Footer />
           </CurrentTemperatureUnitContext.Provider>
