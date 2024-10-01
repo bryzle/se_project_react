@@ -1,12 +1,6 @@
 const baseUrl = "http://localhost:3001";
 const headers = { "Content-Type": "application/json" };
-
-function _checkResponse(res) {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
-}
+import { _checkResponse } from "./api";
 
 function _getHeaders(token) {
   return {
@@ -38,7 +32,7 @@ export const editProfile = (name, avatar) => {
     headers: _getHeaders(token),
     body: JSON.stringify({ name, avatar }),
   }).then(_checkResponse);
-}
+};
 
 export const checkToken = () => {
   const token = localStorage.getItem("jwt");
@@ -50,7 +44,6 @@ export const checkToken = () => {
     },
   }).then(_checkResponse);
 };
-
 
 /*  export const fetchWithAuth = (url, options = {}, token) => {
   return fetch(url, {

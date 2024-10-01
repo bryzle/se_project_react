@@ -9,7 +9,6 @@ const AddItemModal = ({ isOpen, onAddItem, closeActiveModal }) => {
 
   const { name, link, weather } = values;
 
-
   function handleSubmit(e) {
     e.preventDefault();
     onAddItem({ name, link, weather });
@@ -54,7 +53,7 @@ const AddItemModal = ({ isOpen, onAddItem, closeActiveModal }) => {
             type="radio"
             name="weather"
             className="modal__radio-input"
-            id="Hot"
+            id="hot"
             value="Hot"
             onChange={handleChange}
           />
@@ -87,7 +86,7 @@ const AddItemModal = ({ isOpen, onAddItem, closeActiveModal }) => {
             type="radio"
             className="modal__radio-input"
             name="weather"
-            id="Cold"
+            id="cold"
             value="Cold"
             onChange={handleChange}
           />

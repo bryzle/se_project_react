@@ -285,6 +285,7 @@ function App() {
               closeActiveModal={closeActiveModal}
               isOpen={activeModal === "edit"}
               onEdit={onEdit}
+              currentUser={currentUser}
             />
             <LoginModal
               closeActiveModal={closeActiveModal}

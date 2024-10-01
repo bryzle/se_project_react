@@ -1,4 +1,5 @@
 import "./ModalWithForm.css";
+import { useEffect } from "react";
 
 function ModalWithForm({
   children,
@@ -26,6 +27,7 @@ function ModalWithForm({
           </button>
           <button
             className="modal__span-button"
+            type="button"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();

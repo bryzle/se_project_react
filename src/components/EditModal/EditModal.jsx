@@ -1,18 +1,20 @@
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useForm } from "../../Hooks/useForm.js";
 
-const EditModal = ({ isOpen, closeActiveModal, onEdit,  }) => {
+const EditModal = ({ isOpen, closeActiveModal, onEdit, currentUser }) => {
   const { values, handleChange } = useForm({
     name: "",
     avatar: "",
   });
 
   const { name, avatar } = values;
-
   function handleSubmit(e) {
     e.preventDefault();
     onEdit(values);
   }
+
+  const currentName = currentUser.name;
+  const currentAvatar = currentUser.avatar;
 
   return (
     <ModalWithForm
@@ -31,7 +33,7 @@ const EditModal = ({ isOpen, closeActiveModal, onEdit,  }) => {
         type="text"
         name="name"
         id="edit-name"
-        placeholder="Name"
+        placeholder={currentName}
         value={name}
         onChange={handleChange}
         required
@@ -44,13 +46,13 @@ const EditModal = ({ isOpen, closeActiveModal, onEdit,  }) => {
         type="text"
         name="avatar"
         id="edit-avatar"
-        placeholder="Image"
+        placeholder={currentAvatar}
         value={avatar}
         onChange={handleChange}
         required
       />
     </ModalWithForm>
   );
-}
+};
 
 export default EditModal;
