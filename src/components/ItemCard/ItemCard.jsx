@@ -3,12 +3,18 @@ import dislikeButton from "../../assets/like-button.svg";
 import likeButton from "../../assets/like-button-State=Liked.svg";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import React, { useContext } from "react";
-function ItemCard({ item, onCardClick, onCardLike }) {
+function ItemCard({ item, onCardClick, onCardLike, isLoggedIn }) {
   const handleCardClick = () => {
     onCardClick(item);
   };
   const { currentUser } = useContext(CurrentUserContext);
   const isLiked = item.likes && item.likes.includes(currentUser._id);
+
+  const isOwn = item.owner === currentUser._id;
+
+  const itemLikeButtonClassName = `card__like-button ${
+    isOwn ? "card__like-btn_visible" : "card__like-btn_hidden"
+  }`;
 
   const handleLike = () => {
     onCardLike(item, isLiked);
@@ -27,7 +33,7 @@ function ItemCard({ item, onCardClick, onCardLike }) {
           src={isLiked ? likeButton : dislikeButton}
           alt="like button"
           onClick={handleLike}
-          className="card__like-btn"
+          className={itemLikeButtonClassName}
         />
       </div>
     </div>

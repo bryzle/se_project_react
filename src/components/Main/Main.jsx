@@ -9,6 +9,7 @@ function Main({
   clothingItems,
   onCardLike,
   deleteCard,
+  isLoggedIn,
 }) {
   const { currentTemperatureUnit } = React.useContext(
     CurrentTemperatureUnitContext
@@ -43,6 +44,7 @@ function Main({
                   item={item}
                   onCardLike={onCardLike}
                   deleteCard={deleteCard}
+                  isLoggedIn={isLoggedIn}
                 />
               );
             })}

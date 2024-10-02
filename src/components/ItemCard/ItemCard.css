@@ -45,3 +45,7 @@
   height: 50px;
   width: fit-content;
 }
+
+.card__like-btn_hidden {
+  visibility: hidden;
+}

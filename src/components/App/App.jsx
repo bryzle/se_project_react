@@ -233,6 +233,7 @@ function App() {
                     clothingItems={clothingItems}
                     onCardLike={handleCardLike}
                     deleteCard={deleteCard}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
               />
