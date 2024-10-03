@@ -17,11 +17,11 @@ const EditModal = ({ isOpen, closeActiveModal, onEdit, currentUser }) => {
   const currentName = currentUser.name;
   const currentAvatar = currentUser.avatar;
 
-    useEffect(() => {
+  useEffect(() => {
     if (currentUser) {
       setValues({ name: currentName, avatar: currentAvatar });
     }
-  }, currentUser); 
+  }, [currentUser]);
 
   return (
     <ModalWithForm
@@ -40,8 +40,8 @@ const EditModal = ({ isOpen, closeActiveModal, onEdit, currentUser }) => {
         type="text"
         name="name"
         id="edit-name"
-        placeholder={"Name"}
-        value={name}
+        placeholder="Name"
+        value={name || ""}
         onChange={handleChange}
         required
       />
@@ -53,8 +53,8 @@ const EditModal = ({ isOpen, closeActiveModal, onEdit, currentUser }) => {
         type="text"
         name="avatar"
         id="edit-avatar"
-        placeholder={"Placeholder"}
-        value={avatar}
+        placeholder="Placeholder"
+        value={avatar || ""}
         onChange={handleChange}
         required
       />
