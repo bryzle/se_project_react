@@ -1,6 +1,7 @@
-const baseUrl = "http://localhost:3001";
-const headers = { "Content-Type": "application/json" };
+import { baseUrl } from "../utils/constants";
 import { _checkResponse } from "./api";
+
+const headers = { "Content-Type": "application/json" };
 
 function _getHeaders(token) {
   return {

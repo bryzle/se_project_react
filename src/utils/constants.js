@@ -3,6 +3,11 @@ export const coordinates = {
   longitude: -73.97759,
 };
 
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://wtwr.aber.ir/items"
+    : "http://localhost:3000";
+
 export const APIkey = "08abb2335b7e25ff9ca1c2ed39ad5797";
 
 export const weatherOptions = [
@@ -29,11 +34,10 @@ export const weatherOptions = [
 ];
 
 export const defaultWeatherOptions = {
-day:{
+  day: {
     url: new URL("../assets/day/clear.svg", import.meta.url).href,
-},
-night:{
+  },
+  night: {
     url: new URL("../assets/night/clear.png", import.meta.url).href,
-},
+  },
 };
-
