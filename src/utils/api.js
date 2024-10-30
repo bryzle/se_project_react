@@ -1,4 +1,5 @@
 import {baseUrl} from "../utils/constants"
+
 const headers = { "Content-Type": "application/json" };
 function _checkResponse(res) {
   if (res.ok) {

@@ -5,8 +5,8 @@ export const coordinates = {
 
 export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://wtwr.aber.ir/items"
-    : "http://localhost:3000";
+    ? "https://wtwr.aber.ir"
+    : "http://localhost:3001";
 
 export const APIkey = "08abb2335b7e25ff9ca1c2ed39ad5797";
 
